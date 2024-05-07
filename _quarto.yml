@@ -1,0 +1,19 @@
+project:
+  type: book
+
+book:
+  title: "Teaching Materials Support"
+  subtitle: "Details and Setup of the Quarto site for teaching statistics"
+  author: "Matthew Ivory"
+  date: "02 04 24"  #format: d m y
+  chapters:
+    - index.qmd
+
+#bibliography: references.bib
+
+format:
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
