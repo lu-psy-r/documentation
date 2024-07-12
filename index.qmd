@@ -40,6 +40,10 @@ Of importance is that the main materials, the workshop materials are held in the
 
 As I said, there is abstracted content, and that you are unlikely to have access to, but these help maintain consistency across the board. These are in separate repositories (e.g. `essentials`). There isn't very much you need to know about this, just that it exists and any changes will need to go through someone with access to the repo (primarily whoever has control of the lu-psy-r account).
 
+### Repository Colours
+
+The colours for each repository button are managed here, in the `index.css` file. They are managed in the sections .year-one, .year-two, .year-three, .year-msc. Change the colour codes and pushing changes to the essentials git should automatically roll out changes across the site.
+
 # GitHub integration and workflow
 
 Some of us are familiar with GitHub and version control, at least for personal projects, but perhaps less so for collaborating together. This is possible the biggest "change" in the way that materials need to be managed. In theory, because only one person is likely to be working in a single module folder at a time, and each person working on unique documents, there should be minimal conflicts in files and so should be smooth.
@@ -54,7 +58,7 @@ First off, on GitHub, everyone will need to be added as a collaborator to ensure
 
 When making changes to content, it is best practice to first perform a pull request to get the latest version of the project (to reflect changes others may have made) by `git pull https://github.com/lu-psy-r/<enter-relevant-repo-here>.git` into an appropriate place on your local machine. You may be asked for your github user and password.
 
-The you can make the changes you want to make. Add new files, alter your .qmd worksheets, whatever you want.
+The you can make the changes you want to make. Add new files, alter your .qmd worksheets, whantever you want.
 
 ::: callout-note
 Remember, students will only see the .qmd files as webpages, so anything else is effectively hidden!
@@ -63,9 +67,11 @@ Remember, students will only see the .qmd files as webpages, so anything else is
 
 ## Pushing changes to the site
 
-There are two ways of doing this, through the terminal/command line, or through the RStudio interface. I describe both, but I would always recommend the terminal approach as it is more transparent and possible issues are clearer to see. I also have never really used the RStudio method, but I know people in the department use it - so I describe it vaguely.
+There are two ways of doing this, through the terminal/command line, or through the RStudio interface. I describe both, but I would always recommend the terminal approach as it is more transparent and possible issues are clearer to see. I also have never really used the RStudio method, but I know people in the department use it - so I describe it vaguely, but if this is incorrect or ambiguous, please do update the guidelines from someone who knows the process.
 
 ### via terminal
+
+Before making any changes, ensure that you are working with the most recent version of the repository by running `git pull` via terminal first. Good practice should mean you are not often editing the same pages as others, it is important that to avoid coming against more painful git-related commands, you pull before making any major changes.
 
 Once you've made the changes and you want to make these live changes to the site, the best thing to do is to click the render button in RStudio which gives you a preview of the materials. You can check you're happy with the format and presentation here.
 
@@ -86,6 +92,8 @@ Once the render completes successfully, then you need to run the commands
 
 If memory serves, then if you have the repo git enabled (which it should be), then you'd see a `git` pane up by files/packages, click commit/push offers you a chance to add a message and then pushing actually renders the project simultaneously. I think that's it, but there may be a step or two I have missed.
 
+Make sure to pull changes before making edits. There should be a `pull` option within the git pane.
+
 ::: callout-note
 You can actually see the website change progress if you go to the GitHub repo and look at the actions tab. Obviously the repo may change, but use the postfix `/actions` which shows you upload progress. As the teaching materials grow more and more complex, changes take longer. For example, the initial uploads took ~35s and now take three times as long. If it is taken longer than normal, check the actions page to see if anything has failed.
 
@@ -98,6 +106,10 @@ Now there are potentially for two sticking points really.
 
 1.  During the render process, errors can appear that are unexpected. Broadly speaking, the render process will try and run anything that is an R file (qmd, Rmd, R) and run the code. If you've included dummy code in your qmd that isn't going to run successfully (intended bugs) then it will fail. You can fix this a couple of ways, the easiest being a chunk setting in the qmd file that specifies not to eval that chunk. More detail on this later.
 2.  During the push, failures here should be minimal and would likely come from merge conflicts, where multiple people have made changes to the same file and Git doesn't know which to use. This is handled in Git.
+
+## Via Github Desktop
+
+This exists and provides a GUI for running via the terminal. I don't use it and so cannot offer a detailed walkthrough, but please feel free to add one here.
 
 # Creating and Managing Worksheets
 
@@ -183,11 +195,14 @@ Click "Copy Embed Code". Paste this into the chunk and that should be it, no oth
 
 # The previous content repository
 
-This section describes the process of adding previous year's content to the previous-content repository. It assumes you are the collaborator (which is likely the role of whoever is in charge of stats teaching).
+This section describes the process of adding previous year's content to the previous-content repository. It assumes you are the collaborator (which is likely the role of whoever is in charge of stats teaching). This need not be done by every module coordinator.
 
-* In the repo: create a new academic year folder (e.g. `2324` or `2425`). The current existing folder is `2324` so make sure folders are consistently named.
-* Go to the different active/present repositories and copy-paste each of the PSYCxxx folders into the new previous-content folder.
-* open up `previous-content/_quarto.yml` and add a new section under the sidebar called `2023-24` (relevant to the year being added), add the section/contents under here to reflect the structure in the folders. This can either be taken from the quarto.yml files in the repositories, or copy-pasted from previous year content in the previous-content repo.
+These steps should be taken at the end of each academic year, once all the teaching materials have been delivered.
+
+1. In the previous-content repository, create a new folder in the root directory titled with the academic year. Current convention is `2324`.
+2. Then, in the year1, year2, year3, and MSc folder, copy and paste each of the folders names PSYCxxx into the newly created academic year folder in the previous-content repo. You should now have all of the module content contained within the academic year just finished.
+3. open up `previous-content/_quarto.yml` and add a new section under the sidebar called `2023-24` (relevant to the year being added), add the section/contents under here to reflect the structure in the folders. This can either be taken from the quarto.yml files in the repositories, or copy-pasted from previous year content in the previous-content repo. This is what will show in the sidebar as to what it contains.
+4. Finally, you now have a static version of previous content which will no longer be updated or managed. Students should always be directed to the current materials as the definitive approved teaching content.
 
 # Technical
 
